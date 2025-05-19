@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Stock Info</title>
+</head>
+<body>
+    <h1>Check Stock Price</h1>
+    <form method="post">
+        <input type="text" name="symbol" placeholder="Enter symbol (e.g., AAPL)" required>
+        <button type="submit">Search</button>
+    </form>
+
+    {% if stock_data %}
+        {% if stock_data.error %}
+            <p style="color: red;">Error: {{ stock_data.error }}</p>
+        {% else %}
+            <p><strong>{{ stock_data.time }}</strong></p>
+            <p><strong>{{ stock_data.company }}</strong></p>
+            <p>Price: {{ stock_data.price }} | Change: {{ stock_data.change }} ({{ stock_data.percent_change }})</p>
+        {% endif %}
+    {% endif %}
+</body>
+</html>
